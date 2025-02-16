@@ -197,3 +197,232 @@ Traceback (most recent call last):
     raise NotImplementedError
 NotImplementedError
 
+2025-02-16 22:24:16,600 - __main__ - INFO - Starting bot with token: 77124...
+2025-02-16 22:24:16,601 - core.bot - INFO - Bot initialized with token
+2025-02-16 22:24:16,602 - __main__ - INFO - Starting bot...
+2025-02-16 22:24:16,602 - core.bot - INFO - Creating application instance...
+2025-02-16 22:24:17,754 - core.bot - INFO - Handlers registered successfully
+2025-02-16 22:24:17,755 - core.bot - INFO - Starting bot polling...
+2025-02-16 22:24:18,065 - core.bot - ERROR - Error starting bot: Cannot close a running event loop
+Traceback (most recent call last):
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 1069, in __run
+    loop.run_until_complete(self.initialize())
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 697, in run_until_complete
+    self._check_running()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 633, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 1094, in __run
+    loop.run_until_complete(self.shutdown())
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 697, in run_until_complete
+    self._check_running()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 633, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ZOZ\core\bot.py", line 45, in start
+    await self.application.run_polling(allowed_updates=Update.ALL_TYPES)
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 868, in run_polling
+    return self.__run(
+           ~~~~~~~~~~^
+        updater_coroutine=self.updater.start_polling(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        stop_signals=stop_signals,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 1099, in __run
+    loop.close()
+    ~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\asyncio\proactor_events.py", line 684, in close
+    raise RuntimeError("Cannot close a running event loop")
+RuntimeError: Cannot close a running event loop
+
+2025-02-16 22:24:18,067 - __main__ - ERROR - Error in main function: Cannot close a running event loop
+2025-02-16 22:24:18,074 - __main__ - ERROR - Traceback: Traceback (most recent call last):
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 1069, in __run
+    loop.run_until_complete(self.initialize())
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 697, in run_until_complete
+    self._check_running()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 633, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 1094, in __run
+    loop.run_until_complete(self.shutdown())
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 697, in run_until_complete
+    self._check_running()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 633, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ZOZ\main.py", line 62, in main
+    await bot.start()
+  File "C:\ZOZ\core\bot.py", line 45, in start
+    await self.application.run_polling(allowed_updates=Update.ALL_TYPES)
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 868, in run_polling
+    return self.__run(
+           ~~~~~~~~~~^
+        updater_coroutine=self.updater.start_polling(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        stop_signals=stop_signals,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 1099, in __run
+    loop.close()
+    ~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\asyncio\proactor_events.py", line 684, in close
+    raise RuntimeError("Cannot close a running event loop")
+RuntimeError: Cannot close a running event loop
+
+2025-02-16 22:24:18,076 - __main__ - INFO - Shutting down...
+2025-02-16 22:24:18,077 - core.bot - INFO - Stopping bot...
+2025-02-16 22:24:18,077 - core.bot - ERROR - Error stopping bot: 'Application' object has no attribute 'stop_polling'
+2025-02-16 22:24:18,078 - __main__ - ERROR - Error during shutdown: 'Application' object has no attribute 'stop_polling'
+2025-02-16 22:24:18,092 - __main__ - ERROR - Traceback (most recent call last):
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 1069, in __run
+    loop.run_until_complete(self.initialize())
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 697, in run_until_complete
+    self._check_running()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 633, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 1094, in __run
+    loop.run_until_complete(self.shutdown())
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 697, in run_until_complete
+    self._check_running()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 633, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ZOZ\main.py", line 62, in main
+    await bot.start()
+  File "C:\ZOZ\core\bot.py", line 45, in start
+    await self.application.run_polling(allowed_updates=Update.ALL_TYPES)
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 868, in run_polling
+    return self.__run(
+           ~~~~~~~~~~^
+        updater_coroutine=self.updater.start_polling(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        stop_signals=stop_signals,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 1099, in __run
+    loop.close()
+    ~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\asyncio\proactor_events.py", line 684, in close
+    raise RuntimeError("Cannot close a running event loop")
+RuntimeError: Cannot close a running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ZOZ\main.py", line 27, in shutdown
+    await bot.stop()
+  File "C:\ZOZ\core\bot.py", line 59, in stop
+    await self.application.stop_polling()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Application' object has no attribute 'stop_polling'. Did you mean: 'run_polling'?
+
+2025-02-16 22:24:18,096 - __main__ - ERROR - Critical error: Cannot close a running event loop
+2025-02-16 22:24:18,105 - __main__ - ERROR - Full traceback: Traceback (most recent call last):
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 1069, in __run
+    loop.run_until_complete(self.initialize())
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 697, in run_until_complete
+    self._check_running()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 633, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 1094, in __run
+    loop.run_until_complete(self.shutdown())
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 697, in run_until_complete
+    self._check_running()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 633, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ZOZ\main.py", line 78, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 721, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\ZOZ\main.py", line 62, in main
+    await bot.start()
+  File "C:\ZOZ\core\bot.py", line 45, in start
+    await self.application.run_polling(allowed_updates=Update.ALL_TYPES)
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 868, in run_polling
+    return self.__run(
+           ~~~~~~~~~~^
+        updater_coroutine=self.updater.start_polling(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+        stop_signals=stop_signals,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\ZOZ\venv\Lib\site-packages\telegram\ext\_application.py", line 1099, in __run
+    loop.close()
+    ~~~~~~~~~~^^
+  File "C:\Program Files\Python313\Lib\asyncio\proactor_events.py", line 684, in close
+    raise RuntimeError("Cannot close a running event loop")
+RuntimeError: Cannot close a running event loop
+
