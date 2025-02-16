@@ -153,22 +153,32 @@ class Bot:
             ConversationHandler: Настроенный обработчик диалогов
         """
         return ConversationHandler(
-            entry_points=[CommandHandler('start', self.start_command)],
+            entry_points=[
+                CommandHandler('start', self.start_command),
+                CallbackQueryHandler(self.button_callback)
+            ],
             states={
                 States.START: [
-                    CallbackQueryHandler(self.button_callback, pattern='^(auth|back_to_start)$')
+                    CallbackQueryHandler(self.button_callback)
                 ],
                 States.AUTH: [
-                    MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_auth),
-                    CallbackQueryHandler(self.button_callback, pattern='^back_to_start$')
+                    CallbackQueryHandler(self.button_callback),
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_auth)
                 ],
                 States.MAIN_MENU: [
                     CallbackQueryHandler(self.button_callback)
                 ],
+                States.HELP_PROJECT: [
+                    CallbackQueryHandler(self.button_callback)
+                ],
+                States.ABOUT: [
+                    CallbackQueryHandler(self.button_callback)
+                ]
             },
             fallbacks=[CommandHandler('start', self.start_command)],
-            per_message=True,  # Важно для корректной работы CallbackQueryHandler
-            per_chat=True
+            per_message=False,  # Изменено с True на False
+            per_chat=True,
+            name="main_conversation"
         )
 
     async def start(self):
