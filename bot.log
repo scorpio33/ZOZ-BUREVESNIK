@@ -14,3 +14,14 @@
 2025-02-16 21:36:03,264 - core.application - ERROR - Error during setup: ConversationHandler main_conversation can not be persistent if application has no persistence
 2025-02-16 21:36:03,265 - __main__ - ERROR - Error in main function: ConversationHandler main_conversation can not be persistent if application has no persistence
 2025-02-16 21:36:03,266 - __main__ - ERROR - Critical error: ConversationHandler main_conversation can not be persistent if application has no persistence
+2025-02-16 21:54:37,652 - core.application - ERROR - Error during setup: ConversationHandler message_conversation can not be persistent if application has no persistence
+2025-02-16 21:54:37,652 - __main__ - ERROR - Error in main function: ConversationHandler message_conversation can not be persistent if application has no persistence
+2025-02-16 21:54:37,653 - __main__ - ERROR - Critical error: ConversationHandler message_conversation can not be persistent if application has no persistence
+2025-02-16 21:59:01,013 - core.bot - INFO - Bot initialized with token
+2025-02-16 21:59:02,066 - core.bot - INFO - Handlers registered successfully
+2025-02-16 21:59:02,067 - core.bot - INFO - Starting bot polling...
+2025-02-16 21:59:02,495 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7712419053:AAGFL_W-sf3hxcg_TlYPgL28Qtks4XA3980/getMe "HTTP/1.1 200 OK"
+2025-02-16 21:59:02,498 - telegram.ext.Application - INFO - Application started
+2025-02-16 21:59:02,756 - core.bot - ERROR - Error starting bot: Cannot close a running event loop
+2025-02-16 21:59:02,756 - __main__ - ERROR - Error in main function: Cannot close a running event loop
+2025-02-16 21:59:02,760 - __main__ - ERROR - Critical error: Cannot close a running event loop

@@ -20,25 +20,41 @@ class States:
     MAIN_MENU = 'MAIN_MENU'
 
 class Bot:
-    def __init__(self, application: Application):
-        """
-        Initialize bot with required components
-        Args:
-            application: Application instance from python-telegram-bot
-        """
-        self.application = application
+    def __init__(self, token: str):
+        """Initialize bot with token"""
+        self.token = token
         self.default_password = 'KREML'
-        
-        # Register handlers
-        self._register_handlers()
-        logger.info("Bot initialized")
+        self.application = None
+        logger.info("Bot initialized with token")
+
+    async def start(self):
+        """Start the bot"""
+        try:
+            # Initialize application
+            self.application = Application.builder().token(self.token).build()
+            
+            # Register handlers
+            self._register_handlers()
+            
+            # Start polling
+            logger.info("Starting bot polling...")
+            await self.application.initialize()
+            await self.application.start()
+            await self.application.run_polling(allowed_updates=Update.ALL_TYPES)
+            
+        except Exception as e:
+            logger.error(f"Error starting bot: {e}")
+            raise
         
     def _register_handlers(self):
-        """Register all necessary handlers"""
-        # Обработчик для команд и текстовых сообщений
+        """Register all handlers"""
+        # Message handler
         message_handler = ConversationHandler(
             entry_points=[CommandHandler('start', self.start_command)],
             states={
+                States.START: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_text)
+                ],
                 States.AUTH: [
                     MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_auth)
                 ],
@@ -48,55 +64,53 @@ class Bot:
             },
             fallbacks=[CommandHandler('start', self.start_command)],
             name="message_conversation",
-            persistent=True,
-            per_message=False
+            persistent=False  # Changed to False to avoid persistence issues
         )
         
-        # Обработчик для callback-кнопок
+        # Callback handler
         callback_handler = ConversationHandler(
-            entry_points=[CallbackQueryHandler(self.button_callback)],
+            entry_points=[CallbackQueryHandler(self.button_callback, pattern='^.*$')],
             states={
                 States.START: [
-                    CallbackQueryHandler(self.button_callback)
+                    CallbackQueryHandler(self.button_callback, pattern='^.*$')
                 ],
                 States.AUTH: [
-                    CallbackQueryHandler(self.button_callback)
+                    CallbackQueryHandler(self.button_callback, pattern='^.*$')
                 ],
                 States.MAIN_MENU: [
-                    CallbackQueryHandler(self.button_callback)
+                    CallbackQueryHandler(self.button_callback, pattern='^.*$')
                 ],
                 States.HELP_PROJECT: [
-                    CallbackQueryHandler(self.button_callback)
+                    CallbackQueryHandler(self.button_callback, pattern='^.*$')
                 ],
                 States.ABOUT: [
-                    CallbackQueryHandler(self.button_callback)
+                    CallbackQueryHandler(self.button_callback, pattern='^.*$')
                 ]
             },
-            fallbacks=[CallbackQueryHandler(self.button_callback)],
+            fallbacks=[CallbackQueryHandler(self.button_callback, pattern='^.*$')],
             name="callback_conversation",
-            persistent=True,
-            per_message=True
+            persistent=False  # Changed to False to avoid persistence issues
         )
         
-        # Регистрируем оба обработчика
+        # Add handlers
         self.application.add_handler(message_handler)
         self.application.add_handler(callback_handler)
         
-    async def start(self):
-        """Start the bot"""
-        try:
-            await self.application.initialize()
-            await self.application.start()
-            await self.application.run_polling(allowed_updates=Update.ALL_TYPES)
-        except Exception as e:
-            logger.error(f"Error running bot: {str(e)}")
-            raise
-        finally:
-            if self.application:
-                await self.application.stop()
+        # Add error handler
+        self.application.add_error_handler(self.error_handler)
         
+        logger.info("Handlers registered successfully")
+
+    async def error_handler(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Handle errors"""
+        logger.error(f"Update {update} caused error {context.error}")
+        if update and update.effective_message:
+            await update.effective_message.reply_text(
+                "Произошла ошибка. Пожалуйста, попробуйте позже."
+            )
+
     async def start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
-        """Обработчик команды /start"""
+        """Handle /start command"""
         keyboard = [
             [InlineKeyboardButton("🔐 Авторизация", callback_data='auth')],
             [InlineKeyboardButton("💝 Помочь проекту", callback_data='help_project')],

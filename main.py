@@ -2,15 +2,16 @@ import os
 import asyncio
 import logging
 from dotenv import load_dotenv
-from telegram.ext import Application
 from core.bot import Bot
-from core.application import BotApplication
 
 # Configure logging
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO,
-    filename='bot.log'
+    handlers=[
+        logging.FileHandler('bot.log'),
+        logging.StreamHandler()
+    ]
 )
 logger = logging.getLogger(__name__)
 
@@ -23,10 +24,9 @@ async def main() -> None:
         if not token:
             raise ValueError("Bot token not found in environment variables")
             
-        # Initialize bot application
-        bot_app = BotApplication(token)
-        await bot_app.setup()
-        await bot_app.start()
+        # Initialize and start bot
+        bot = Bot(token)
+        await bot.start()
         
     except Exception as e:
         logger.error(f"Error in main function: {str(e)}")
