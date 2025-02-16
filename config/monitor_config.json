@@ -1,0 +1,21 @@
+{
+  "bot_api_url": "http://localhost:8000",
+  "check_interval": 60,
+  "alert_thresholds": {
+    "cpu": 80,
+    "memory": 1024,
+    "response_time": 2.0,
+    "errors": 50
+  },
+  "metrics_retention_days": 30,
+  "alert_channels": {
+    "telegram": {
+      "enabled": true,
+      "chat_id": "YOUR_ALERT_CHAT_ID"
+    },
+    "email": {
+      "enabled": false,
+      "address": "alerts@example.com"
+    }
+  }
+}

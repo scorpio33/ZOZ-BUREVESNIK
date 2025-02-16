@@ -1,0 +1,22 @@
+# Временные файлы
+temp/*
+!temp/.gitkeep
+
+# База данных
+*.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Виртуальное окружение
+venv/
+env/
+
+# Файлы IDE
+.idea/
+.vscode/
+
+# Файлы окружения
+.env

@@ -1,0 +1,11 @@
+ZOZ/
+├── database/
+│   ├── __init__.py
+│   ├── migration_manager.py
+│   └── migrations/
+│       ├── __init__.py
+│       └── 10_map_system_tables.sql
+├── scripts/
+│   ├── __init__.py
+│   └── update_database.py
+└── main.py

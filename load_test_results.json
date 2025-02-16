@@ -1,0 +1,56 @@
+{
+  "response_times": [
+    0.3020806312561035,
+    0.10228276252746582,
+    0.05579400062561035,
+    0.07627320289611816,
+    0.0672917366027832
+  ],
+  "errors": [
+    {
+      "action": "start",
+      "user_id": 991426127,
+      "status": 404,
+      "error_data": "{\"ok\":false,\"error_code\":404,\"description\":\"Not Found\"}",
+      "time": "2025-02-16T18:40:08.377715"
+    },
+    {
+      "action": "help",
+      "user_id": 991426127,
+      "status": 404,
+      "error_data": "{\"ok\":false,\"error_code\":404,\"description\":\"Not Found\"}",
+      "time": "2025-02-16T18:40:08.987344"
+    },
+    {
+      "action": "search",
+      "user_id": 991426127,
+      "status": 404,
+      "error_data": "{\"ok\":false,\"error_code\":404,\"description\":\"Not Found\"}",
+      "time": "2025-02-16T18:40:09.547928"
+    },
+    {
+      "action": "map",
+      "user_id": 991426127,
+      "status": 404,
+      "error_data": "{\"ok\":false,\"error_code\":404,\"description\":\"Not Found\"}",
+      "time": "2025-02-16T18:40:10.127972"
+    },
+    {
+      "action": "settings",
+      "user_id": 991426127,
+      "status": 404,
+      "error_data": "{\"ok\":false,\"error_code\":404,\"description\":\"Not Found\"}",
+      "time": "2025-02-16T18:40:10.708175"
+    }
+  ],
+  "pools": {
+    "pool_1": {
+      "duration": 3.155936,
+      "users": 1,
+      "start_time": "18:40:08",
+      "end_time": "18:40:11"
+    }
+  },
+  "start_time": "2025-02-16 18:40:08.069274",
+  "end_time": null
+}

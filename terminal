@@ -1,0 +1,21 @@
+mkdir temp
+# Сначала обновим pip
+python -m pip install --upgrade pip
+
+# Теперь установим каждый пакет отдельно
+python -m pip install requests
+python -m pip install python-telegram-bot
+python -m pip install python-dotenv
+python -m pip install gpxpy
+python -m pip install aiohttp
+python -m pip install pyjwt
+python -m pip install sqlite3
+python -m pip install cryptography
+# Установка gpxpy и других необходимых пакетов
+pip install gpxpy
+pip install folium
+pip install shapely
+pip install geopy
+pip install polyline
+pip install simplekml
+pip install asyncpg

@@ -1,0 +1,26 @@
+
+=== Load Test Report ===
+Duration: 0:01:17.729288
+Max Concurrent Users: 8
+
+Performance Metrics:
+- Average Response Time: 0.24s
+- Max Response Time: 3.29s
+- Error Rate: 0.00%
+
+Resource Usage:
+- Average Memory: 0.56%
+- Average CPU: 0.00%
+- Peak Memory: 0.57%
+- Peak CPU: 0.00%
+
+Action Statistics:
+- start: avg=0.43s, max=3.29s
+- auth: avg=0.22s, max=2.03s
+- menu: avg=0.17s, max=0.37s
+- search: avg=7.38s, max=9.88s
+- map: avg=0.15s, max=0.27s
+- coordination: avg=5.39s, max=5.62s
+- team_management: avg=5.43s, max=5.90s
+
+Errors:
