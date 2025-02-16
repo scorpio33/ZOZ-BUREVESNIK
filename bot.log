@@ -6,3 +6,11 @@
 2025-02-16 21:11:03,852 - __main__ - INFO - Starting bot...
 2025-02-16 21:11:03,852 - __main__ - ERROR - Error in main function: name 'Update' is not defined
 2025-02-16 21:11:03,853 - __main__ - ERROR - Critical error: name 'Update' is not defined
+2025-02-16 21:34:11,531 - core.bot - INFO - Bot initialized
+2025-02-16 21:34:11,532 - core.handler_registry - ERROR - Error registering handlers: 'Bot' object has no attribute 'handle_message'
+2025-02-16 21:34:11,582 - core.application - ERROR - Error during setup: 'Bot' object has no attribute 'handle_message'
+2025-02-16 21:34:11,582 - __main__ - ERROR - Error in main function: 'Bot' object has no attribute 'handle_message'
+2025-02-16 21:34:11,583 - __main__ - ERROR - Critical error: 'Bot' object has no attribute 'handle_message'
+2025-02-16 21:36:03,264 - core.application - ERROR - Error during setup: ConversationHandler main_conversation can not be persistent if application has no persistence
+2025-02-16 21:36:03,265 - __main__ - ERROR - Error in main function: ConversationHandler main_conversation can not be persistent if application has no persistence
+2025-02-16 21:36:03,266 - __main__ - ERROR - Critical error: ConversationHandler main_conversation can not be persistent if application has no persistence
