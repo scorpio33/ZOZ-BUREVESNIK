@@ -11,15 +11,8 @@ from telegram.ext import (
 )
 from core.menu_system import MenuSystem
 
-# Настройка логирования
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    level=logging.INFO,
-    filename='bot.log'
-)
 logger = logging.getLogger(__name__)
 
-# Определяем состояния
 class States:
     START = 'START'
     AUTH = 'AUTH'
@@ -30,14 +23,35 @@ class States:
 class Bot:
     def __init__(self, application: Application):
         """
-        Инициализация бота
+        Initialize bot with required components
         Args:
-            application: Экземпляр Application из python-telegram-bot
+            application: Application instance from python-telegram-bot
         """
         self.application = application
         self.menu_system = MenuSystem()
         self.default_password = 'KREML'
+        
+        # Register handlers
+        self._register_handlers()
         logger.info("Bot initialized")
+        
+    def _register_handlers(self):
+        """Register all necessary handlers"""
+        conv_handler = self.get_conversation_handler()
+        self.application.add_handler(conv_handler)
+        
+    async def start(self):
+        """Start the bot"""
+        try:
+            await self.application.initialize()
+            await self.application.start()
+            await self.application.run_polling(allowed_updates=Update.ALL_TYPES)
+        except Exception as e:
+            logger.error(f"Error running bot: {str(e)}")
+            raise
+        finally:
+            if self.application:
+                await self.application.stop()
         
     async def start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
         """

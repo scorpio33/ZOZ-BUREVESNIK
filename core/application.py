@@ -1,5 +1,4 @@
 import logging
-import asyncio
 from telegram import Update
 from telegram.ext import ApplicationBuilder
 from core.bot import Bot
@@ -36,15 +35,11 @@ class BotApplication:
     async def start(self):
         """Start the bot"""
         try:
-            await self.application.initialize()
-            await self.application.start()
-            await self.application.run_polling(allowed_updates=Update.ALL_TYPES)
+            if not self.bot:
+                raise ValueError("Bot not initialized. Call setup() first")
+                
+            await self.bot.start()
             
         except Exception as e:
             logger.error(f"Error starting bot: {e}")
             raise
-            
-        finally:
-            logger.info("Stopping bot...")
-            if self.application:
-                await self.application.stop()
