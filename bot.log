@@ -25,3 +25,13 @@
 2025-02-16 21:59:02,756 - core.bot - ERROR - Error starting bot: Cannot close a running event loop
 2025-02-16 21:59:02,756 - __main__ - ERROR - Error in main function: Cannot close a running event loop
 2025-02-16 21:59:02,760 - __main__ - ERROR - Critical error: Cannot close a running event loop
+2025-02-16 22:03:04,940 - core.bot - INFO - Bot initialized with token
+2025-02-16 22:03:06,217 - core.bot - INFO - Handlers registered successfully
+2025-02-16 22:03:06,217 - core.bot - INFO - Starting bot polling...
+2025-02-16 22:03:06,671 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot7712419053:AAGFL_W-sf3hxcg_TlYPgL28Qtks4XA3980/getMe "HTTP/1.1 200 OK"
+2025-02-16 22:03:06,673 - telegram.ext.Application - INFO - Application started
+2025-02-16 22:03:06,937 - core.bot - ERROR - Error starting bot: Cannot close a running event loop
+2025-02-16 22:03:06,938 - __main__ - ERROR - Error in main function: Cannot close a running event loop
+2025-02-16 22:03:06,942 - __main__ - ERROR - Critical error: Cannot close a running event loop
+2025-02-16 22:06:16,596 - core.bot - INFO - Bot initialized with token
+2025-02-16 22:06:16,598 - __main__ - ERROR - Critical error: 

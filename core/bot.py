@@ -1,105 +1,89 @@
 import logging
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import (
-    Application,
-    CommandHandler,
-    CallbackQueryHandler,
-    MessageHandler,
-    filters,
-    ContextTypes,
-    ConversationHandler
-)
+import asyncio
+from telegram import Update
+from telegram.ext import Application, ApplicationBuilder
+from contextlib import suppress
 
 logger = logging.getLogger(__name__)
-
-class States:
-    START = 'START'
-    AUTH = 'AUTH'
-    HELP_PROJECT = 'HELP_PROJECT'
-    ABOUT = 'ABOUT'
-    MAIN_MENU = 'MAIN_MENU'
 
 class Bot:
     def __init__(self, token: str):
         """Initialize bot with token"""
-        self.token = token
-        self.default_password = 'KREML'
-        self.application = None
-        logger.info("Bot initialized with token")
+        try:
+            self.token = token
+            self.application = None
+            self._running = False
+            logger.info("Bot initialized with token")
+        except Exception as e:
+            logger.error(f"Error initializing bot: {str(e)}")
+            raise
 
     async def start(self):
-        """Start the bot"""
+        """Start the bot with proper lifecycle management"""
         try:
-            # Initialize application
-            self.application = Application.builder().token(self.token).build()
+            # Create application instance if not exists
+            if not self.application:
+                logger.info("Creating application instance...")
+                self.application = (
+                    ApplicationBuilder()
+                    .token(self.token)
+                    .build()
+                )
+                
+                logger.info("Registering handlers...")
+                await self._register_handlers()
             
-            # Register handlers
-            self._register_handlers()
-            
-            # Start polling
-            logger.info("Starting bot polling...")
+            logger.info("Initializing application...")
             await self.application.initialize()
+            
+            logger.info("Starting application...")
             await self.application.start()
-            await self.application.run_polling(allowed_updates=Update.ALL_TYPES)
+            
+            self._running = True
+            logger.info("Bot started successfully")
+            
+            # Run polling in background task
+            logger.info("Starting polling...")
+            await self.application.run_polling(
+                allowed_updates=Update.ALL_TYPES,
+                close_loop=False
+            )
             
         except Exception as e:
-            logger.error(f"Error starting bot: {e}")
+            logger.error(f"Error starting bot: {str(e)}")
+            logger.error(f"Traceback: {traceback.format_exc()}")
             raise
-        
-    def _register_handlers(self):
+        finally:
+            if self._running:
+                await self.stop()
+
+    async def stop(self):
+        """Gracefully stop the bot"""
+        if self.application:
+            self._running = False
+            logger.info("Stopping bot...")
+            
+            try:
+                await self.application.stop()
+                await self.application.shutdown()
+                logger.info("Bot stopped successfully")
+            except Exception as e:
+                logger.error(f"Error stopping bot: {str(e)}")
+                raise
+
+    async def _register_handlers(self):
         """Register all handlers"""
-        # Message handler
-        message_handler = ConversationHandler(
-            entry_points=[CommandHandler('start', self.start_command)],
-            states={
-                States.START: [
-                    MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_text)
-                ],
-                States.AUTH: [
-                    MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_auth)
-                ],
-                States.MAIN_MENU: [
-                    MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_text)
-                ]
-            },
-            fallbacks=[CommandHandler('start', self.start_command)],
-            name="message_conversation",
-            persistent=False  # Changed to False to avoid persistence issues
-        )
-        
-        # Callback handler
-        callback_handler = ConversationHandler(
-            entry_points=[CallbackQueryHandler(self.button_callback, pattern='^.*$')],
-            states={
-                States.START: [
-                    CallbackQueryHandler(self.button_callback, pattern='^.*$')
-                ],
-                States.AUTH: [
-                    CallbackQueryHandler(self.button_callback, pattern='^.*$')
-                ],
-                States.MAIN_MENU: [
-                    CallbackQueryHandler(self.button_callback, pattern='^.*$')
-                ],
-                States.HELP_PROJECT: [
-                    CallbackQueryHandler(self.button_callback, pattern='^.*$')
-                ],
-                States.ABOUT: [
-                    CallbackQueryHandler(self.button_callback, pattern='^.*$')
-                ]
-            },
-            fallbacks=[CallbackQueryHandler(self.button_callback, pattern='^.*$')],
-            name="callback_conversation",
-            persistent=False  # Changed to False to avoid persistence issues
-        )
-        
-        # Add handlers
-        self.application.add_handler(message_handler)
-        self.application.add_handler(callback_handler)
-        
-        # Add error handler
-        self.application.add_error_handler(self.error_handler)
-        
-        logger.info("Handlers registered successfully")
+        try:
+            if not self.application:
+                raise RuntimeError("Application not initialized")
+            
+            # Register handlers here
+            # self.application.add_handler(...)
+            
+            logger.info("Handlers registered successfully")
+        except Exception as e:
+            logger.error(f"Error registering handlers: {str(e)}")
+            raise
 
     async def error_handler(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Handle errors"""
