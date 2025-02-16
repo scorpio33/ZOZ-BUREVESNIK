@@ -143,3 +143,57 @@ Traceback (most recent call last):
     raise NotImplementedError
 NotImplementedError
 
+2025-02-16 22:17:13,458 - __main__ - INFO - Starting bot with token: 77124...
+2025-02-16 22:17:13,459 - core.bot - INFO - Bot initialized with token
+2025-02-16 22:17:13,460 - __main__ - ERROR - Error in main function: 
+2025-02-16 22:17:13,464 - __main__ - ERROR - Traceback: Traceback (most recent call last):
+  File "C:\ZOZ\main.py", line 46, in main
+    loop.add_signal_handler(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        sig,
+        ^^^^
+        lambda s=sig: asyncio.create_task(shutdown(bot, sig))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Program Files\Python313\Lib\asyncio\events.py", line 596, in add_signal_handler
+    raise NotImplementedError
+NotImplementedError
+
+2025-02-16 22:17:13,466 - __main__ - ERROR - Critical error: 
+2025-02-16 22:17:13,472 - __main__ - ERROR - Full traceback: Traceback (most recent call last):
+  File "C:\ZOZ\main.py", line 46, in main
+    loop.add_signal_handler(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        sig,
+        ^^^^
+        lambda s=sig: asyncio.create_task(shutdown(bot, sig))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Program Files\Python313\Lib\asyncio\events.py", line 596, in add_signal_handler
+    raise NotImplementedError
+NotImplementedError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ZOZ\main.py", line 69, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\base_events.py", line 721, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\ZOZ\main.py", line 64, in main
+    loop.remove_signal_handler(signal.SIGTERM)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\asyncio\events.py", line 599, in remove_signal_handler
+    raise NotImplementedError
+NotImplementedError
+

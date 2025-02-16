@@ -1,7 +1,7 @@
 import logging
 import asyncio
 import traceback
-from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
+from telegram import Update
 from telegram.ext import (
     Application, 
     ApplicationBuilder,
@@ -11,7 +11,6 @@ from telegram.ext import (
     filters,
     ContextTypes
 )
-from contextlib import suppress
 
 logger = logging.getLogger(__name__)
 
@@ -41,6 +40,7 @@ class Bot:
                 
                 await self._register_handlers()
             
+            self._running = True
             logger.info("Starting bot polling...")
             await self.application.run_polling(allowed_updates=Update.ALL_TYPES)
             
@@ -50,14 +50,21 @@ class Bot:
 
     async def stop(self):
         """Gracefully stop the bot"""
-        if self.application:
+        if self.application and self._running:
             self._running = False
             logger.info("Stopping bot...")
             
             try:
-                await self.application.stop()
+                # Stop polling
+                await self.application.stop_polling()
+                
+                # Wait for pending updates to be processed
+                await asyncio.sleep(1)
+                
+                # Stop the application
                 await self.application.shutdown()
                 logger.info("Bot stopped successfully")
+                
             except Exception as e:
                 logger.error(f"Error stopping bot: {str(e)}")
                 raise
